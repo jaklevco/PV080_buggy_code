@@ -1,12 +1,12 @@
 import sys
 import os
-import yaml
 import flask
+import yaml
 
-app = flask.Flask(__name__)
+APP = flask.Flask(__name__)
 
 
-@app.route("/")
+@APP.route("/")
 def index():
     version = flask.request.args.get("urllib_version")
     url = flask.request.args.get("url")
@@ -30,7 +30,7 @@ def fetch_website(urllib_version, url):
 
     try:
         http = urllib.PoolManager()
-        r = http.request('GET', url)
+        res = http.request('GET', url)
     except:
         print('Exception')
 
@@ -51,13 +51,13 @@ if __name__ == '__main__':
     print("2. Code injection vulnerability:")
     print("3. Yaml deserialization vulnerability:")
     print("4. Use of assert statements vulnerability:")
-    choice  = input("Select vulnerability: ")
+    choice = input("Select vulnerability: ")
     if choice == "1":
         NEW_PERSON = Person("Vickie")
-        print_nametag(input("Please format your nametag: "), new_person)
+        print_nametag(input("Please format your nametag: "), NEW_PERSON)
     elif choice == "2":
-        urlib_version = input("Choose version of urllib: ")
-        fetch_website(urlib_version, url="https://www.google.com")
+        URLIB_VERSION = input("Choose version of urllib: ")
+        fetch_website(URLIB_VERSION, url="https://www.google.com")
     elif choice == "3":
         load_yaml(input("File name: "))
         print("Executed -ls on current folder")
